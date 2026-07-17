@@ -1,0 +1,301 @@
+.music-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  color: var(--white);
+  z-index: 1;
+}
+.music-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: all 0.3s ease-in-out;
+  background-image: var(--music-bg-img);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: blur(80px) brightness(var(--bg-brightness)) saturate(120%);
+  transform: scale(1.1);
+  z-index: -1;
+}
+.music-container::after {
+  opacity: var(--dark_mask_opacity);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -2;
+  transition: all 0.3s;
+  background: var(--overlay-music);
+}
+#music-page .aplayer {
+  position: relative;
+  left: auto;
+  right: auto;
+  margin: 15vh auto 0 auto;
+  width: 1200px;
+  transform: none;
+  z-index: 10;
+  color: var(--text);
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+#music-page .aplayer .aplayer-body {
+  margin: 0 auto;
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+}
+#music-page .aplayer .aplayer-pic {
+  width: 360px;
+  height: 360px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: 0px 4px 29.8px 3px var(--shadow-surface);
+  border-radius: 15px;
+}
+#music-page .aplayer .aplayer-info {
+  margin: 8px 0;
+  padding: 0;
+  position: relative;
+  height: fit-content;
+  border: none;
+}
+#music-page .aplayer .aplayer-lrc {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  overflow: visible;
+  top: calc(-15vh - 444px);
+  left: 480px;
+  overflow-y: auto !important;
+  scroll-behavior: smooth !important;
+}
+#music-page .aplayer .aplayer-lrc::-webkit-scrollbar {
+  width: 0 !important;
+  display: none !important;
+}
+#music-page .aplayer .aplayer-lrc::before {
+  display: none;
+}
+#music-page .aplayer .aplayer-lrc::after {
+  display: none;
+}
+#music-page .aplayer .aplayer-lrc .aplayer-lrc-current {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.5 !important;
+  margin: 4px;
+  height: fit-content !important;
+  transition: all 0.6s;
+}
+#music-page .aplayer .aplayer-lrc p {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 2.5 !important;
+  margin: 4px;
+  height: fit-content !important;
+  transition: all 0.6s;
+  white-space: nowrap;
+  overflow: visible;
+}
+#music-page .aplayer .aplayer-music {
+  margin: 4px 8px;
+  height: fit-content;
+}
+#music-page .aplayer .aplayer-music {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+#music-page .aplayer .aplayer-title {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--white);
+}
+#music-page .aplayer .aplayer-author {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--white);
+  opacity: 0.75;
+  margin-left: 8px;
+  text-indent: -1.6ch;
+}
+#music-page .aplayer .aplayer-controller {
+  margin: 0;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+#music-page .aplayer .aplayer-bar,
+#music-page .aplayer .aplayer-loaded,
+#music-page .aplayer .aplayer-played {
+  height: 8px;
+  border-radius: 4px;
+}
+#music-page .aplayer .aplayer-bar {
+  background: var(--overlay-track) !important;
+}
+#music-page .aplayer .aplayer-played {
+  background: var(--windy) !important;
+}
+#music-page .aplayer .aplayer-loaded {
+  background: var(--overlay-buffer) !important;
+}
+#music-page .aplayer .aplayer-thumb {
+  margin-top: -1px;
+  display: none;
+}
+#music-page .aplayer .aplayer-bar-wrap {
+  width: 100% !important;
+  padding: 7px 0;
+}
+#music-page .aplayer .aplayer-list {
+  width: 480px;
+  margin: 0px 0 0 8px;
+  padding: 32px 56px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  transform: translateX(-64px);
+}
+#music-page .aplayer .aplayer-list::-webkit-scrollbar {
+  width: 0 !important;
+  display: none !important;
+}
+#music-page .aplayer .aplayer-list ol {
+  overflow: visible;
+}
+#music-page .aplayer .aplayer-list li {
+  height: 32px;
+  border-radius: 5px;
+  border: none;
+  margin: 8px 0;
+}
+#music-page .aplayer .aplayer-list li .aplayer-list-title,
+#music-page .aplayer .aplayer-list li .aplayer-list-author {
+  color: var(--windy);
+  transition: all 0.2s;
+}
+#music-page .aplayer .aplayer-list li:hover {
+  background-color: var(--overlay-card-medium);
+}
+#music-page .aplayer .aplayer-list li:hover .aplayer-list-title,
+#music-page .aplayer .aplayer-list li:hover .aplayer-list-author {
+  color: var(--text);
+}
+#music-page .aplayer .aplayer-list .aplayer-icon .aplayer-icon-menu {
+  display: none;
+}
+#music-page .aplayer .aplayer-list .aplayer-list-index {
+  display: none;
+}
+#music-page .aplayer .aplayer-list .aplayer-list-title {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 14px;
+}
+#music-page .aplayer .aplayer-list .aplayer-list-light {
+  background: var(--overlay-card-soft);
+  color: var(--text);
+  box-shadow: 0px 4px 29.8px 3px var(--shadow-surface);
+}
+#music-page .aplayer .aplayer-list .aplayer-list-light .aplayer-list-title,
+#music-page .aplayer .aplayer-list .aplayer-list-light .aplayer-list-author {
+  color: var(--text);
+}
+#music-page .aplayer .aplayer-list .aplayer-list-cur {
+  background: var(--windy) !important;
+  display: none;
+}
+#music-page .aplayer .aplayer-notice {
+  display: none;
+}
+#music-page .aplayer .aplayer-time {
+  width: 400px;
+}
+#music-page .aplayer .aplayer-time .aplayer-time-inner {
+  font-family: 'Noto Sans Serif', serif;
+  font-size: 14px;
+  color: var(--white);
+  opacity: 0.75;
+  margin: 0 195px 0 0;
+}
+#music-page .aplayer .aplayer-time .aplayer-icon {
+  width: 20px;
+  height: 20px;
+}
+#music-page .aplayer .aplayer-time .aplayer-icon svg path {
+  fill: var(--white);
+  opacity: 0.75;
+}
+#music-page .aplayer .aplayer-time .aplayer-icon.aplayer-icon-menu {
+  display: none !important;
+}
+#music-page .aplayer .aplayer-volume {
+  background: var(--windy) !important;
+}
+#music-page .aplayer .aplayer-volume-bar {
+  background: var(--overlay-buffer-strong) !important;
+  height: 40px;
+}
+@media (max-width: 768px) {
+  #music-page .aplayer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 8vh;
+  }
+  #music-page .aplayer .aplayer-body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #music-page .aplayer .aplayer-body .aplayer-pic {
+    width: 320px;
+    height: 320px;
+  }
+  #music-page .aplayer .aplayer-info {
+    width: 320px;
+  }
+  #music-page .aplayer .aplayer-info .aplayer-controller,
+  #music-page .aplayer .aplayer-info .aplayer-time {
+    width: 100%;
+  }
+  #music-page .aplayer .aplayer-info .aplayer-time-inner {
+    margin: 0 160px 0 0;
+  }
+  #music-page .aplayer .aplayer-list {
+    width: 360px;
+    max-width: 480px;
+    margin: 16px auto 0 auto;
+    padding: 16px 12px;
+    transform: translateX(0);
+  }
+  #music-page .aplayer .aplayer-list ol {
+    margin: 0;
+    padding: 0;
+    padding-inline-start: 0;
+  }
+  #music-page .aplayer .aplayer-lrc {
+    display: none;
+  }
+}

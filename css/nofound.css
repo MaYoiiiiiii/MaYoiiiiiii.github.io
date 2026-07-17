@@ -1,0 +1,39 @@
+#cannot-get-page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 56px auto;
+  width: 80%;
+  font-family: 'Noto Serif SC', serif;
+}
+#cannot-get-page-content h1 {
+  font-size: 64px;
+  color: var(--base);
+  font-family: 'Noto Sans SC', sans-serif;
+}
+#cannot-get-page-content a {
+  margin-top: 16px;
+  color: var(--text3);
+  font-size: 16px;
+  text-decoration: none;
+}
+#cannot-get-page-content a:hover {
+  text-decoration: underline;
+  color: var(--base);
+}
+#cannot-get-page-content strong {
+  color: var(--base);
+}
+@media (max-width: 768px) {
+  #cannot-get-page-content {
+    width: 90%;
+    margin: 48px auto;
+  }
+  #cannot-get-page-content h1 {
+    font-size: 48px;
+  }
+  #cannot-get-page-content p {
+    margin: 8px 0;
+  }
+}

@@ -1,0 +1,190 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<!DOCTYPE html>
+<html>
+    <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<head>
+    <title>
+        
+            卷宗检索 | Hexo
+        
+        
+    </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" href="/ico/sakura.svg" />
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/all.min.css">
+
+    <!-- ASCII-painting -->
+    
+<script src="/js/nya.js"></script>
+
+    <!-- 引入Noto系和非斜体的Cormorant Garamond字体 -->
+    
+<script src="/js/getfonts.js"></script>
+
+    <!-- 引入LaTex支持css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+    <!-- 引入APlayer支持css和js -->
+    
+<link rel="stylesheet" href="/css/APlayer.min.css">
+
+    
+<script src="/js/APlayer.min.js"></script>
+
+    <!-- 引入Metingjs -->
+    <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+    <!-- 引入Linking -->
+    
+<script src="/js/linking.js"></script>
+
+    <!-- 引入vercount计数器 -->
+    <script defer src="https://events.vercount.one/js"></script>
+    <script>
+        let HEXO_SETTINGS = {
+            root: "/", 
+            url: "https://MaYoiiiiiii.github.io",
+            author: "yoi"
+        };
+
+        let Nemophila = {
+            version: "0.3.1"
+        };
+
+        let THEME_SETTINGS = {
+            lazyload: {
+                enable: false,
+                loading_img: "/images/yachiyo_loading2_640.webp"
+            },
+            };        
+    </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+    <body>  
+    <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<header class="search-header">
+    <a class="search-page-back" href="/"></a>
+</header>
+<div class="search-container">
+    <span class="search-input">
+        <input class="search-input-field" type="text" placeholder="想要了解的案宗是……" autofocus>
+        <button class="search-input-btn">
+            <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.2236 29.1975C22.941 29.1975 29.1972 22.9413 29.1972 15.2238C29.1972 7.50627 22.941 1.25 15.2236 1.25C7.50619 1.25 1.25 7.50627 1.25 15.2238C1.25 22.9413 7.50619 29.1975 15.2236 29.1975Z" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M32.6899 32.6911L25.0918 25.0929" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </span>
+    <section class="search-result">     
+        <div class="search-result-list">
+            <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+ 
+
+<section id="postlist-container" 
+        data-filter-tag="" 
+        data-filter-category=""
+        data-per_page="10">
+    <div id="postlist-header">
+    
+        
+    
+    </div>
+    <article id="postlist">
+        
+    </article>
+    <div id="previous-btn-container">
+       <button id="previous-btn" style="display: none;">Previous</button>
+        <h5 id="previous-no-more" >暂无更多案宗 </h5>
+    </div>
+    
+
+</section>
+
+
+<!-- 模板，用于js -->
+ <template id="post-template">
+  <section class="post-card fade-in">
+    
+    <img src="" alt="banner" class="post-banner no-lazy">
+
+    <section class="post-info">
+      
+      <span class="post-time">
+        <div class="post-time-icon"></div>
+        <h5 class="post-date-text"></h5> </span>
+
+      <a href="" class="post-card-link">
+        <h3 class="post-title"></h3> </a>
+
+      <span class="post-view post-comment-num post-category">
+        
+        <span class="post-view">
+          <div class="post-view-icon"></div>
+          <h5><span class="view-count" >Loading...</span> 人读过</h5>
+        </span>
+
+        <!-- <span class="post-comment-num">
+          <div class="post-comment-num-icon"></div>
+          <h5>112 条评论</h5>
+        </span> -->
+
+        <span class="post-category" style="display: none;">
+          <div class="post-category-icon"></div>
+          <h5 class="post-category-list">
+            </h5>
+        </span>
+
+      </span>
+
+      <p class="post-excerpt"></p>
+
+    </section>
+  </section>
+</template>
+
+
+<script src="/js/previous_btn.js"></script>
+
+
+
+</script>
+
+
+
+<!-- TODO: 添加评论量 -->
+
+<!-- TODO: 移动端文章卡片 -->
+        </div>
+        <p class="search-result-loading">Loading...</p>
+    </section>
+</div>
+
+
+<script src="/js/search.js"></script>
+
+
+    <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<footer id="footer">
+    <img src="/ico/sakura.svg" alt="Nemophila" id="sakura-footer">
+    <p>© 2026 - 2026 yoi. All rights reserved.</p>
+    
+         <a target="_blank" rel="noopener" href="https://icp.gov.moe/?keyword=20212022"></a>
+    
+       
+</footer>
+
+    
+    
+    <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<a id="up">
+    <img src="/images/chevron-up-outline.svg" class="yachiyo-up no-lazy">
+</a>
+    
+<script src="/js/up.js"></script>
+
+    
+    
+    </body>
+</html>
