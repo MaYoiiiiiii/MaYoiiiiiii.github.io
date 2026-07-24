@@ -139,7 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
             // 💡 检索逻辑增强：支持在标题、摘要、全文、以及标签里匹配关键字
             return (
                 title.includes(keyword) ||
-                content.includes(keyword) ||
                 excerpt.includes(keyword) ||
                 tags.includes(keyword)
             );
