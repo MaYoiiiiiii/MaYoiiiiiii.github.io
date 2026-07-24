@@ -144,108 +144,203 @@ document.addEventListener('DOMContentLoaded', ()=> {
             console.error('Error when fetching postlists:', error);
         } }
         
-    // 渲染函数
+// 渲染函数
     const renderBatch = (posts) => {
-        // 用于收集新添加的阅读量元素
-        let newViewCountElements = [];
 
+    let newViewCountElements = [];
 
-        posts.forEach(post => {
-            const clone = template.content.cloneNode(true);
+    const categoryName = {
+        fanfiction: "同人文",
+        talk: "个人杂谈",
+        cut: "原作切片",
+        translation: "同人汉化",
+        doujin: "同人志",
+        game: "同人游戏"
+    };
 
-            // 封面
-            const img = clone.querySelector('img');
+    posts.forEach(post => {
 
-            let realSrc; 
-            if (post.cover) {
-                realSrc = parseUrl(post.cover); 
-            } else {
-                realSrc = '/images/article_banner/banner1.jpg'; // 默认图
-            }
-            
-            if (isLazyLoadEnabled) {  // 使用lazyload
-                img.setAttribute('data-src', realSrc);
-                img.src = THEME_SETTINGS.lazyload.loading_img; // 占位图
-                img.classList.add('lazyload'); // 加入lazyload标识
-            } else {  // 直接加载
-                img.src = realSrc;
-            }
-            
+        const clone = template.content.cloneNode(true);
 
-            // 时间
-            clone.querySelector('.post-date-text').textContent = '发布于 ' + formatDate(post.date);
+        // 发布时间
+        clone.querySelector(".post-date-text").textContent =
+        post.date
+        ? "发布于 " + formatDate(post.date)
+        : "";
 
-            // 标题和链接
-            const link = clone.querySelector('.post-card-link');
-            link.href = '/' + post.path;
-            link.querySelector('.post-title').textContent = post.title;
+        // 标题
+        const link = clone.querySelector(".post-card-link");
+        link.href = post.url || ("/" + post.path);
+        link.querySelector(".post-title").textContent = post.title;
 
-            // ReadTime
-            const readTimeSpan = clone.querySelector('.view-count');
-            readTimeSpan.setAttribute('data-path', getUrl(post.path));
+        // 阅读量（保留你的代码）
+        const readTimeSpan = clone.querySelector(".view-count");
+        if (readTimeSpan) {
+            const postUrl = post.url || ("/" + post.path);
+
+            readTimeSpan.setAttribute(
+                "data-path",
+                getUrl(postUrl)
+            );
             newViewCountElements.push(readTimeSpan);
+        }
 
-            // Category
-            const catWrapper = clone.querySelector('.post-category');
-            const catContainer = clone.querySelector('.post-category-list');
-            const cats = Array.isArray(post.categories) ? post.categories : [];
+        // ------------------------
+        // 分类
+        // ------------------------
 
-            if (post.categories && post.categories.length > 0) {
-                cats.forEach((cat, index) => {
-                    const catName = cat.name || cat;
-                    const a = document.createElement('a');
+        const catContainer = clone.querySelector(".post-category-list");
 
-                    a.href = '/categories/' + catName + '/'; 
-                    a.textContent = catName;
+        if (catContainer) {
 
-                    catContainer.appendChild(a);
-                    
-                    // 逗号分隔
-                    if (index < cats.length - 1) {
-                        catContainer.appendChild(document.createTextNode(', '));
-                    }
+            catContainer.innerHTML = "";
 
+            const cats = Array.isArray(post.categories)
+                ? post.categories
+                : [];
 
-                });
+            cats.forEach((cat, index) => {
+
+                const name = cat.name || cat;
+
+                const a = document.createElement("a");
+                a.href = "/categories/" + name + "/";
+                a.textContent = categoryName[name] || name;
+
+                catContainer.appendChild(a);
+
+                if (index < cats.length - 1) {
+                    catContainer.appendChild(
+                        document.createTextNode(", ")
+                    );
+                }
+
+            });
+
+        }
+
+        // ------------------------
+        // Tag
+        // ------------------------
+
+        const tagContainer =
+            clone.querySelector(".post-tags-list");
+
+        if (tagContainer) {
+
+            tagContainer.innerHTML = "";
+
+            const tags = Array.isArray(post.tags)
+                ? post.tags
+                : [];
+
+            let currentLength = 0;
+            const maxLen = 40;
+
+            tags.forEach((tag, index) => {
+
+                const name = tag.name || tag;
+
+                if (currentLength + name.length > maxLen) {
+
+                    tagContainer.appendChild(
+                        document.createTextNode("...")
+                    );
+
+                    return;
+                }
+
+                currentLength += name.length;
+
+                const wrapper =
+                    document.createElement("div");
+                wrapper.className = "post-tag-item";
+
+                const a = document.createElement("a");
+                a.href = "/tags/" + name + "/";
+                a.className = "post-tag-link";
+                a.textContent = name;
+
+                wrapper.appendChild(a);
+
+                tagContainer.appendChild(wrapper);
+
+                if (
+                    index < tags.length - 1 &&
+                    currentLength < maxLen
+                ) {
+                    tagContainer.appendChild(
+                        document.createTextNode(", ")
+                    );
+                }
+
+            });
+
+        }
+
+        // ------------------------
+        // 摘要 / 加密提示
+        // ------------------------
+
+        const excerpt =
+            clone.querySelector(".post-excerpt");
+
+        if (excerpt) {
+
+            if (post.encrypt) {
+
+                excerpt.textContent =
+                    "【！】该文章已加密，需要密码才能阅读。";
+
+            } else {
+
+                excerpt.innerHTML =
+                    post.excerpt || "";
+
             }
-            clone.querySelector('.post-excerpt').innerHTML = post.excerpt;
-            container.appendChild(clone);
-            const hr = document.createElement('hr');
-            container.appendChild(hr);
 
-            observeNewItems(); // 监听新添加的文章卡片
+        }
 
-            if (window.observeImages) {  // 触发lazyload监听
-                window.observeImages();
-            }
+        container.appendChild(clone);
 
-        });
-        
-        loadedCount += posts.length;
+        const hr = document.createElement("hr");
+        container.appendChild(hr);
 
-        // 批量获取并更新阅读量
-        fetchBatchVercount(newViewCountElements);
+    });
+
+    loadedCount += posts.length;
+
+    observeNewItems();
+
+    if (window.observeImages) {
+        window.observeImages();
     }
 
-    btn.addEventListener('click', async () => {
-        if (!isDataFetched) {
-            await initData();
-        }
+    fetchBatchVercount(newViewCountElements);
 
-        const nextBatch = activeList.slice(loadedCount, loadedCount + parseInt(batchSize));
+}
 
-        if (nextBatch.length > 0) {
-            renderBatch(nextBatch);
-        }
+btn.addEventListener('click', async () => {
 
-        if (loadedCount >= activeList.length) {
-            btn.style.display = 'none';
-            nomore.style.display = 'block';
-        }
-        } 
+    if (!isDataFetched) {
+        await initData();
+    }
 
-        );
+    const nextBatch = activeList.slice(
+        loadedCount,
+        loadedCount + parseInt(batchSize)
+    );
 
+    if (nextBatch.length > 0) {
+        renderBatch(nextBatch);
+    }
+
+    if (loadedCount >= activeList.length) {
+        btn.style.display = 'none';
+        nomore.style.display = 'block';
+    }
+
+});
     // 搜索页传入posts的接口
     window.setSearchResult = (postList) => {
         container.innerHTML = ''; // 清空

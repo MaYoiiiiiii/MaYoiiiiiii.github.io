@@ -527,7 +527,8 @@
                         </span>
                         <p>
                             
-                                
+                                摘要测试。
+
                             
                         </p>
                     </section>
@@ -547,36 +548,29 @@
 
 
 <!-- 模板，用于js -->
- <template id="post-template">
+<template id="post-template">
   <section class="post-card fade-in">
-    
-    <img src="" alt="banner" class="post-banner no-lazy">
-
     <section class="post-info">
       
       <span class="post-time">
         <div class="post-time-icon"></div>
-        <h5 class="post-date-text"></h5> </span>
+        <h5 class="post-date-text"></h5>
+      </span>
 
       <a href="" class="post-card-link">
-        <h3 class="post-title"></h3> </a>
+        <h3 class="post-title"></h3>
+      </a>
 
-      <span class="post-view post-comment-num post-category">
+      <span class="post-meta-container">
         
-        <span class="post-view">
-          <div class="post-view-icon"></div>
-          <h5><span class="view-count" >Loading...</span> 人读过</h5>
+        <span class="post-category">
+          <div class="post-category-icon"></div>
+          <h5 class="post-category-list"></h5>
         </span>
 
-        <!-- <span class="post-comment-num">
-          <div class="post-comment-num-icon"></div>
-          <h5>112 条评论</h5>
-        </span> -->
-
-        <span class="post-category" style="display: none;">
-          <div class="post-category-icon"></div>
-          <h5 class="post-category-list">
-            </h5>
+        <span class="post-tags">
+          <div class="post-tag-icon"></div>
+          <span class="post-tags-list"></span>
         </span>
 
       </span>
@@ -586,6 +580,7 @@
     </section>
   </section>
 </template>
+
 
 
 <script src="/js/previous_btn.js"></script>
