@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
             const clone = template.content.cloneNode(true);
 
             // 封面
-            const img = clone.querySelector('');
+            const img = clone.querySelector('img');
 
             let realSrc; 
             if (post.cover) {
