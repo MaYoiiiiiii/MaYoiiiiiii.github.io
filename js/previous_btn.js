@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
         btn.disabled = true;
 
         try {
-            const res = await fetch('/content.json');
+            const res = await fetch('/search.json');
             if (!res.ok) {
                 btn.textContent = 'Error when loading postlists';
                 return;
