@@ -163,10 +163,16 @@ document.addEventListener('DOMContentLoaded', ()=> {
         const clone = template.content.cloneNode(true);
 
         // 发布时间
-        clone.querySelector(".post-date-text").textContent =
-        post.date
-        ? "发布于 " + formatDate(post.date)
-        : "";
+        let dateStr = "";
+        if (post.date) {
+        dateStr = formatDate(post.date);
+        } else if (post.url) {
+        const dateMatch = post.url.match(/\/(\d{4}\/\d{2}\/\d{2})\//);
+        if (dateMatch) {
+            dateStr = dateMatch[1].replace(/\//g, "-");
+        }
+        }
+        clone.querySelector(".post-date-text").textContent = dateStr ? "发布于 " + dateStr : "";
 
         // 标题
         const link = clone.querySelector(".post-card-link");
